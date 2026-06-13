@@ -60,3 +60,8 @@ They are **not** the install mechanism. The canonical install is the
 **backup-restore** above; the CSVs are reference/source-of-record. If Car Scanner
 later supports direct custom-PID CSV import on your build, the header row is
 documented so they can be adapted.
+
+An **importable Torque-format CSV** of the verified PIDs now exists at
+[`lightning-carscanner-pids.torque.csv`](lightning-carscanner-pids.torque.csv)
+(Settings → custom PIDs → import) — see its
+[README](lightning-carscanner-pids.README.md).

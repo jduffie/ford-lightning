@@ -1,0 +1,8 @@
+Name,ShortName,ModeAndPID,Equation,Min Value,Max Value,Units,Header,startDiagnostic,stopDiagnostic,Scale
+HVB State of Charge,HvbSoc,0x224801,INT16(A:B)*0.002,0,100,%,,,,1
+HVB State of Charge Displayed,HvbSocD,0x224845,A*0.5,0,100,%,7e4,,,1
+HVB Voltage,HvbV,0x22480d,INT16(A:B)*0.01,0,500,Volts,7e2,,,1
+HV Current,HvbA,0x22480b,((signed(A)*256)+B)*0.02,-500,500,Amps,7e2,,,1
+HVB Temperature,HvbT,0x224800,(A-50)*1.8+32,-50,400,F,,,,1
+HVB Energy to Empty,Energy,0x224848,INT16(A:B)*0.002,0,131,kWh,,,,1
+HVB Power,HvbPwr,,val{HVB Voltage}*val{HV Current}*0.001,-200,200,kW,,,,1
