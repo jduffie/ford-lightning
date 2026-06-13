@@ -1,4 +1,4 @@
-Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
-Energy Used Trip,Energy Used,TODO,TODO,TODO,0,200,kWh,TODO — from PID sheet
-Trip Cost,Trip Cost,,virtual,energy_used*RATE,0,100,$,computed (input + rate TODO; rate from home-charging/rates/)
-Speed,Speed,TODO,TODO,TODO,0,120,mph,TODO — from PID sheet
+Name,ShortName,Header,Command,Equation,Min,Max,Unit,Status,Live
+Energy Used (trip),Energy Used,,,Car Scanner native sensor,0,200,kWh,native,
+Trip Cost,Trip Cost,,,native 'Energy costs' (set $/kWh in Settings) or val{Energy Used}*RATE,0,100,$,native-or-virtual,
+Vehicle Speed,Speed,,,Car Scanner native sensor,0,120,mph,native,

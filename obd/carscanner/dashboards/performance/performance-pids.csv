@@ -1,7 +1,7 @@
-Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
-HVB Pack Voltage,Pack V,TODO,TODO,TODO,0,500,V,TODO — from PID sheet
-HVB Pack Current,Pack A,TODO,TODO,TODO,-600,600,A,TODO — from PID sheet
-Instantaneous Power,Power,,computed,voltage*current/1000,-300,300,kW,computed (inputs TODO)
-Motor Temperature,Motor Temp,TODO,TODO,TODO,-40,200,°C,TODO — from PID sheet
-Inverter Temperature,Inv Temp,TODO,TODO,TODO,-40,200,°C,TODO — from PID sheet
-HVB State of Charge,SOC,7E6,22 4801,TODO,0,100,%,UNVERIFIED — confirm against the PID sheet
+Name,ShortName,Header,Command,Equation,Min,Max,Unit,Status,Live
+Instantaneous Power,Power,,,val{HVB Pack Voltage}*val{HVB Pack Current}*0.001,-200,200,kW,computed,2.2
+HVB Pack Current,Pack A,7E2,0x22480B,((signed(A)*256)+B)*0.02,-500,500,A,verified-2026-06-13,4.4
+HVB Pack Voltage,Pack V,7E2,0x22480D,INT16(A:B)*0.01,0,500,V,verified-2026-06-13,343
+Primary Motor Coil Temperature,Motor Temp,,,,-40,300,F,TODO-not-in-mache-sheet,
+Primary Motor Inverter Temperature,Inv Temp,,,,-40,300,F,TODO-not-in-mache-sheet,
+HVB State of Charge,SOC,(default),0x224801,INT16(A:B)*0.002,0,100,%,verified-2026-06-13,60.4

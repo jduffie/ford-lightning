@@ -4,8 +4,8 @@ Owner hub for the **2025 F-150 Lightning Flash**. A task index — find your
 question, follow the one link.
 
 > A BEV on the Ford Mustang Mach-E / F-150 Lightning platform. OBD via **OBDLink
-> MX+ (BLE)** + **Car Scanner (iOS)**. PID sources: the F-150 Lightning Forum and
-> MachEforum community PID sheets.
+> MX+ (Bluetooth Classic)** + **Car Scanner (iOS)**. PID sources: the F-150 Lightning
+> Forum and MachEforum community PID sheets.
 
 ## I own an F-150 Lightning. How do I…?
 
@@ -26,6 +26,8 @@ care which.
 
 ## Status
 
-`obd/carscanner` is built. **PID hex addresses are not all verified** — any PID
-marked `TODO` / `UNVERIFIED` must be confirmed against the forum PID sheets before
-you rely on it. See each dashboard's table.
+`obd/carscanner` is built and **verified on-vehicle (2026-06-13)** on a 2025 Flash
+(123 kWh) with an OBDLink MX+ — full HVB / motor / 12V telemetry reads, so the 2025
+Flash is **not** OBD-firewalled. Most Battery/Performance PID hex is confirmed and
+cross-checked against live readings. A few rows (state of health, 12V SOC/voltage,
+motor/inverter temps) remain `TODO` — see each dashboard's table.

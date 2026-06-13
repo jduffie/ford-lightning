@@ -1,27 +1,29 @@
 # Expense dashboard
 
-Car Scanner has **no native EV cost feature**. This dashboard estimates trip cost
-with a virtual PID built from energy used and a user-set `$/kWh` rate. 3 tiles —
-well under the CarPlay 10-PID cap.
+Estimate what a trip cost in electricity. 3 tiles — well under the CarPlay 10-PID cap.
+
+> **Finding (2026-06-13):** Car Scanner actually has **native energy + cost sensors**
+> — `Energy used` (kWh), `Energy costs` ($), and `EV Instant Energy Consumption`. So
+> this page doesn't need a hand-built virtual PID: set your rate once and use the
+> native cost sensor. The virtual `Energy used × RATE` is kept as a fallback.
 
 ## PID definitions
 
-| Parameter | Header | Mode+PID | Formula | Unit | Status |
-|-----------|--------|----------|---------|------|--------|
-| Energy used (trip) | TODO | TODO | TODO | kWh | TODO — from PID sheet |
-| Trip cost | — | virtual | `energy_used × RATE` | $ | computed (input + rate TODO) |
-| Speed | TODO | TODO | TODO | mph | TODO — from PID sheet |
+| Parameter | Source | Formula / how | Unit | Status |
+|---|---|---|---|---|
+| Energy used (trip) | Car Scanner native sensor | built-in `Energy used` | kWh | ✅ native |
+| Trip cost | Car Scanner native sensor | native `Energy costs` (set `$/kWh` in Settings) — or virtual `val{Energy used}*RATE` | $ | ✅ native / virtual |
+| Vehicle speed | Car Scanner native sensor | built-in `Vehicle speed` | mph | ✅ native |
 
-`RATE` = `$/kWh`, a **documented, user-editable constant** you set in the trip-cost
-PID's equation (e.g. a `$0.15` literal). It is **not** read from the car.
+These are **standard Car Scanner sensors**, not custom mode-22 PIDs — no hex to fill.
 
 ## Rate — where it comes from
 
-The canonical `$/kWh` rate lives in **home-charging › `rates/`**. This dashboard
-**points** to it — it does not own the number. Copy the rate from there into the
-`RATE` constant.
-
-Dependency direction is vehicle → home-charging. Never the reverse.
+Set the `$/kWh` once in Car Scanner (Settings → currency + energy price) so the native
+`Energy costs` sensor computes cost. The **canonical** rate lives in
+**home-charging › `rates/`** — copy it from there; this dashboard points to it, it
+does not own the number. Dependency direction is vehicle → home-charging, never the
+reverse.
 
 > home-charging ↗ `rates/` _(scaffold)_
 
@@ -31,31 +33,28 @@ Most-important first:
 
 1. Trip cost ($)
 2. Energy used (kWh)
-3. Speed (mph)
+3. Vehicle speed (mph)
 
 Speed is included so you can eyeball power-vs-speed (efficiency) alongside cost.
 
 ## Limits — read these
 
 - **Flat rate only.** No home vs DC-fast-charge split — one `$/kWh` for everything.
-- **Ignores charging losses.** Cost is computed from energy *used while driving*,
-  not energy *drawn from the wall*. Real charging is ~10–15% higher due to
-  AC/DC and thermal losses; this estimate runs low.
+- **Ignores charging losses.** Cost is from energy *used while driving*, not energy
+  *drawn from the wall*. Real charging runs ~10–15% higher (AC/DC + thermal losses);
+  DCFC losses and idle/session fees differ again. This estimate runs low.
 - **Estimate, not a bill.** No demand charges, no time-of-use tiers, no taxes/fees.
 
 ## Notes
 
-- **Trip cost** is a virtual/computed PID: `energy_used × RATE`. Structurally
-  defined now; produces real numbers once the energy-used PID hex is verified and
-  the rate constant is set.
-- Verify every `TODO` hex (energy used, speed) against the community PID sheets:
-  - https://www.f150lightningforum.com/forum/threads/pid-list-to-monitor-your-lightning.13563/
-  - https://www.macheforum.com/site/threads/tips-on-using-carscanner-elm-app-with-obd2-for-custom-data-display-ver-1-87-1-and-later.12627/
-  The Lightning shares the Mach-E mode-22 PID set.
+- If you prefer the virtual route, `Trip cost = val{Energy used} * RATE`, where `RATE`
+  is a `$/kWh` literal you paste from home-charging › `rates/`.
+- For deeper cost tracking, `HVB Energy to Empty` (`0x224848`, verified) deltas give
+  battery-out kWh between two points.
 
 ## Screenshots
 
-_Screenshot pending._
+_Screenshot pending — embeds commented out until the PNGs are committed._
 
-![Expense — phone](../../assets/expense-phone.png)
-![Expense — CarPlay](../../assets/expense-carplay.png)
+<!-- ![Expense — phone](../../assets/expense-phone.png) -->
+<!-- ![Expense — CarPlay](../../assets/expense-carplay.png) -->

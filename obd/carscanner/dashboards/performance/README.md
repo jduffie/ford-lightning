@@ -1,18 +1,25 @@
 # Performance dashboard
 
-Drivetrain power and thermals for the F-150 Lightning. 6 PIDs — under the CarPlay
+Drivetrain power and thermals for the F-150 Lightning. 6 tiles — under the CarPlay
 10-PID cap.
+
+> **Verified on-vehicle 2026-06-13** — power, current, voltage and SOC read live on
+> a 2025 Flash (OBDLink MX+ + Car Scanner). Motor/inverter temps weren't in the
+> MachEforum Torque CSV we pulled — see TODO below.
 
 ## PID definitions
 
-| Parameter | Header | Mode+PID | Formula | Unit | Status |
-|-----------|--------|----------|---------|------|--------|
-| HVB pack voltage | TODO | TODO | TODO | V | TODO — from PID sheet |
-| HVB pack current | TODO | TODO | TODO | A | TODO — from PID sheet |
-| Instantaneous power | — | computed | `voltage × current ÷ 1000` (regen negative) | kW | computed (inputs TODO) |
-| Motor temperature | TODO | TODO | TODO | °C | TODO — from PID sheet |
-| Inverter temperature | TODO | TODO | TODO | °C | TODO — from PID sheet |
-| HVB State of Charge | `7E6` | `22 4801` | TODO — confirm scaling | % | UNVERIFIED — confirm against the PID sheet |
+| Parameter | Header | Command | Formula | Unit | Live | Status |
+|---|---|---|---|---|---|---|
+| Instantaneous power | — | computed | `val{HVB pack voltage}*val{HVB pack current}*0.001` (regen negative) | kW | 2.2 | ✅ computed |
+| HVB pack current | `7E2` | `0x22480B` | `((signed(A)*256)+B)*0.02` | A | 4.4 | ✅ verified |
+| HVB pack voltage | `7E2` | `0x22480D` | `INT16(A:B)*0.01` | V | 343 | ✅ verified |
+| Primary motor coil temperature | — | TODO | TODO | °F | — | ⚠️ TODO |
+| Primary motor inverter temperature | — | TODO | TODO | °F | — | ⚠️ TODO |
+| HVB State of Charge | (default) | `0x224801` | `INT16(A:B)*0.002` | % | 60.4 | ✅ verified |
+
+Byte/function conventions (`INT16`, `signed`, `val{}`, `(default)` header) are
+documented in [../battery/README.md](../battery/README.md#byte--function-conventions).
 
 ## Layout / order
 
@@ -21,35 +28,35 @@ Most-important first, ≤10 PIDs (CarPlay caps a page at 10):
 1. Instantaneous power (kW, regen negative)
 2. HVB pack current
 3. HVB pack voltage
-4. Motor temperature
-5. Inverter temperature
+4. Primary motor coil temperature
+5. Primary motor inverter temperature
 6. HVB State of Charge
 
-(Power leads — it's the number you watch while driving. Voltage and current feed
-it; they sit just below.)
+(Power leads — the number you watch while driving. Voltage and current feed it.)
 
 ## 0–60 / acceleration
 
-**0–60 is not a PID.** Use Car Scanner's built-in acceleration tool:
-**Menu → Acceleration measurement** (a.k.a. the Dyno / 0–100 tool). It times
-0–60 mph (and 1/4 mile etc.) from the speed signal — no custom PID needed. Run it
-on a closed course / safe road.
+**0–60 is not a PID.** Use Car Scanner's built-in tool: **Menu → Acceleration
+measurement** (the dyno / 0–100 tool). It times 0–60 mph (and ¼-mile etc.) from the
+speed signal. Caveat: it derives 0–60 from the speed signal, so it lags a dragstrip
+and is sensitive to launch, grade, payload, and tire slip on a ~6,500 lb truck. Run
+it on a closed course / safe road.
 
 ## Notes
 
-- **Instantaneous power** is a virtual/computed PID: `voltage × current ÷ 1000`.
-  Sign follows current, so regen reads negative. Structurally defined now; real
-  values once voltage + current hex are verified and filled.
-- The SOC row reuses the `7E6` / `22 4801` candidate — `UNVERIFIED`, confirm
-  before relying on it.
-- Verify every `TODO`/`UNVERIFIED` hex against the community PID sheets:
+- **Instantaneous power** is computed from the voltage and current tiles; sign
+  follows current, so regen reads negative.
+- Motor/inverter temps showed live in Car Scanner's built-in profile (rows
+  `Primary Motor Coil Temperature` / `Primary Motor Inverter Temperature`) but weren't
+  in the Torque CSV we verified. Pull their hex from:
   - https://www.f150lightningforum.com/forum/threads/pid-list-to-monitor-your-lightning.13563/
-  - https://www.macheforum.com/site/threads/tips-on-using-carscanner-elm-app-with-obd2-for-custom-data-display-ver-1-87-1-and-later.12627/
-  The Lightning shares the Mach-E mode-22 PID set.
+  - https://www.macheforum.com/site/threads/ford-mustang-mach-e-extended-pids-for-torque-project.7427/
+- The Lightning is dual-motor — `Primary` (front) and `Secondary` (rear) each have
+  coil + inverter temps. Add the rear pair if you want all four (watch the 10-PID cap).
 
 ## Screenshots
 
-_Screenshot pending._
+_Screenshot pending — embeds commented out until the PNGs are committed._
 
-![Performance — phone](../../assets/performance-phone.png)
-![Performance — CarPlay](../../assets/performance-carplay.png)
+<!-- ![Performance — phone](../../assets/performance-phone.png) -->
+<!-- ![Performance — CarPlay](../../assets/performance-carplay.png) -->

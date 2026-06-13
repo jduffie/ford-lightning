@@ -2,6 +2,10 @@
 
 Get Car Scanner talking to the Lightning, then load the dashboards.
 
+> **Verified 2026-06-13** on a 2025 F-150 Lightning Flash (123 kWh) with an OBDLink
+> MX+ + Car Scanner iOS: full HVB / dual-motor / 12V telemetry reads — the 2025 Flash
+> is **not** OBD-firewalled. The truck must be in **Ready** to stream live data.
+
 ## Platforms
 
 - Car Scanner iOS (iPhone) + iOS CarPlay.
@@ -10,15 +14,25 @@ Get Car Scanner talking to the Lightning, then load the dashboards.
 ## 1. Pair the adapter
 
 1. Plug the **OBDLink MX+** into the OBD-II port (driver-side, under the dash).
-2. iOS Bluetooth: pair the MX+ (BLE).
-3. In Car Scanner → **Settings → Connection**, select the MX+ and connect.
-4. Connection profile: **Ford Mustang Mach-E / F-150 Lightning**.
+2. **One-time:** open the **OBDLink app**, update the MX+ firmware, then **fully
+   force-quit** it — if it stays alive it holds the Bluetooth link and blocks Car
+   Scanner. Don't reopen it.
+3. iOS **Settings → Bluetooth** → pair the MX+. The MX+ is **Bluetooth Classic
+   (BT 3.0), not BLE.**
+4. In Car Scanner → **Settings → Connection** set adapter type to **Bluetooth (3.0)**
+   (not Bluetooth LE), select the MX+, and connect.
+5. Connection profile: **Mustang Mach-E / F-150 Lightning / E-Transit**.
+
+> Adapter note: the MX+ reads the documented HVB PIDs fine via the OBD-II gateway.
+> The OBDLink **CX** (BLE 5.1) is the other common pick if you want BLE pairing or
+> CAN-FD raw-bus access — but it is **not** required for these dashboards.
 
 ## 2. Import the dashboards (Restore from Backup)
 
-Car Scanner has **no import-from-file** for dashboards. Dashboards travel inside a
-**backup**, so the import is a restore. This overwrites settings — protect yours
-first.
+The community shares full Lightning dashboards as a Car Scanner **backup** (`.cbz`),
+so the import is a **restore**. (Car Scanner also has a per-dashboard Save/Restore;
+the `.cbz` backup is the method used by the forum templates.) A restore overwrites
+settings — protect yours first.
 
 1. **Back up your own settings first:** Settings → Backup → create a backup. Keep
    it. The restore in the next step replaces your current configuration.

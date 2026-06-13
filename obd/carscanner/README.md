@@ -19,5 +19,9 @@ Setup and import flow: [install.md](install.md).
   first.
 - Platforms: Car Scanner iOS (iPhone) + iOS CarPlay. **Android / Android Auto on
   request.**
-- Many PID hex addresses are unverified — see each dashboard table for `TODO` /
-  `UNVERIFIED` cells to confirm against the PID sheets.
+- Adapter: **OBDLink MX+ (Bluetooth Classic, BT 3.0 — not BLE).** See
+  [install.md](install.md).
+- **Verified on-vehicle 2026-06-13** on a 2025 Flash: most Battery/Performance hex is
+  confirmed and cross-checked against live readings (not firewalled). A few rows
+  (state of health, 12V SOC/voltage, motor/inverter temps) are still `TODO` — see
+  each dashboard table.

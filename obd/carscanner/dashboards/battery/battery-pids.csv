@@ -1,10 +1,10 @@
-Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
-HVB State of Charge,SOC,7E6,22 4801,TODO,0,100,%,UNVERIFIED — confirm against the PID sheet
-HVB Pack Voltage,Pack V,TODO,TODO,TODO,0,500,V,TODO — from PID sheet
-HVB Pack Current,Pack A,TODO,TODO,TODO,-600,600,A,TODO — from PID sheet
-HVB Power,Power,,computed,voltage*current/1000,-300,300,kW,computed (inputs TODO)
-HVB Pack Temperature,Pack Temp,TODO,22 4800,TODO,-40,80,°C,UNVERIFIED — confirm against the PID sheet
-HVB State of Health,SOH,TODO,TODO,TODO,0,100,%,TODO — from PID sheet
-HVB Pack Energy,Energy,TODO,TODO,TODO,0,131,kWh,TODO — from PID sheet
-12V LVB State of Charge,LVB SOC,TODO,TODO,TODO,0,100,%,TODO — from PID sheet
-12V LVB Voltage,LVB V,TODO,TODO,TODO,0,16,V,TODO — from PID sheet
+Name,ShortName,Header,Command,Equation,Min,Max,Unit,Status,Live
+HVB State of Charge,SOC,(default),0x224801,INT16(A:B)*0.002,0,100,%,verified-2026-06-13,60.4
+HVB Pack Voltage,Pack V,7E2,0x22480D,INT16(A:B)*0.01,0,500,V,verified-2026-06-13,343
+HVB Pack Current,Pack A,7E2,0x22480B,((signed(A)*256)+B)*0.02,-500,500,A,verified-2026-06-13,4.4
+HVB Power,Power,,,val{HVB Pack Voltage}*val{HVB Pack Current}*0.001,-200,200,kW,computed,2.2
+HVB Pack Temperature,Pack Temp,(default),0x224800,(A-50)*1.8+32,-50,400,F,verified-2026-06-13,93.2
+HVB State of Health,SOH,,,,0,100,%,TODO-not-in-mache-sheet,100*
+HVB Energy to Empty,Energy,(default),0x224848,INT16(A:B)*0.002,0,131,kWh,verified-2026-06-13,76.08
+LVB State of Charge,LVB SOC,,,,0,100,%,TODO-not-in-mache-sheet,
+LVB Voltage,LVB V,,,,0,16,V,TODO-not-in-mache-sheet,
