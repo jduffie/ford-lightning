@@ -1,0 +1,4 @@
+Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
+Energy Used Trip,Energy Used,TODO,TODO,TODO,0,200,kWh,TODO — from PID sheet
+Trip Cost,Trip Cost,,virtual,energy_used*RATE,0,100,$,computed (input + rate TODO; rate from home-charging/rates/)
+Speed,Speed,TODO,TODO,TODO,0,120,mph,TODO — from PID sheet

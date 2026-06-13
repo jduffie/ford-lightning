@@ -1,0 +1,10 @@
+Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
+HVB State of Charge,SOC,7E6,22 4801,TODO,0,100,%,UNVERIFIED — confirm against the PID sheet
+HVB Pack Voltage,Pack V,TODO,TODO,TODO,0,500,V,TODO — from PID sheet
+HVB Pack Current,Pack A,TODO,TODO,TODO,-600,600,A,TODO — from PID sheet
+HVB Power,Power,,computed,voltage*current/1000,-300,300,kW,computed (inputs TODO)
+HVB Pack Temperature,Pack Temp,TODO,22 4800,TODO,-40,80,°C,UNVERIFIED — confirm against the PID sheet
+HVB State of Health,SOH,TODO,TODO,TODO,0,100,%,TODO — from PID sheet
+HVB Pack Energy,Energy,TODO,TODO,TODO,0,131,kWh,TODO — from PID sheet
+12V LVB State of Charge,LVB SOC,TODO,TODO,TODO,0,100,%,TODO — from PID sheet
+12V LVB Voltage,LVB V,TODO,TODO,TODO,0,16,V,TODO — from PID sheet

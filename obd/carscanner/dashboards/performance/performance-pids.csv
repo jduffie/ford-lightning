@@ -1,0 +1,7 @@
+Name,ShortName,Header,Mode+PID,Equation,Min,Max,Unit,Status
+HVB Pack Voltage,Pack V,TODO,TODO,TODO,0,500,V,TODO — from PID sheet
+HVB Pack Current,Pack A,TODO,TODO,TODO,-600,600,A,TODO — from PID sheet
+Instantaneous Power,Power,,computed,voltage*current/1000,-300,300,kW,computed (inputs TODO)
+Motor Temperature,Motor Temp,TODO,TODO,TODO,-40,200,°C,TODO — from PID sheet
+Inverter Temperature,Inv Temp,TODO,TODO,TODO,-40,200,°C,TODO — from PID sheet
+HVB State of Charge,SOC,7E6,22 4801,TODO,0,100,%,UNVERIFIED — confirm against the PID sheet
