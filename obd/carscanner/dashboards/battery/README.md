@@ -65,8 +65,9 @@ captured (see Notes).
 
 ## Screenshots
 
-_Screenshot pending — embeds are commented out until the PNGs are committed (avoids
-broken-image icons on GitHub)._
+Phone view below is a Car Scanner **"All sensors" capture** from the on-vehicle test
+(2025 Flash) — real readings, swappable for a built-dashboard view later. CarPlay
+shot still pending.
 
-<!-- ![Battery — phone](../../assets/battery-phone.png) -->
+![Battery — phone](../../assets/battery-phone.png)
 <!-- ![Battery — CarPlay](../../assets/battery-carplay.png) -->

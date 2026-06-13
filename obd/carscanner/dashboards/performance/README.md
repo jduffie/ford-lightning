@@ -56,7 +56,9 @@ it on a closed course / safe road.
 
 ## Screenshots
 
-_Screenshot pending — embeds commented out until the PNGs are committed._
+Phone view below is a Car Scanner **"All sensors" capture** from the on-vehicle test
+(showing the primary motor coil/inverter temps) — swappable for a built-dashboard
+view later. CarPlay shot still pending.
 
-<!-- ![Performance — phone](../../assets/performance-phone.png) -->
+![Performance — phone](../../assets/performance-phone.png)
 <!-- ![Performance — CarPlay](../../assets/performance-carplay.png) -->
