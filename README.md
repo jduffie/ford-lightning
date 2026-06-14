@@ -17,7 +17,7 @@ question, follow the one link.
 | …get Car Scanner set up and these dashboards loaded? | Restore-from-backup install flow. | [obd/carscanner/install.md](obd/carscanner/install.md) |
 | …know the right `$/kWh` rate to use for cost? | That lives in home-charging (canonical rate). | [home-charging ↗ `rates/`](https://github.com/jduffie/home-charging/tree/main/rates) |
 | …size or install a home charger for this truck? | Situational — copy the prompt into an LLM. | [home-charging ↗ charger-sizing prompt](https://github.com/jduffie/home-charging/blob/main/prompts/charger-sizing.md) |
-| …use EVScanner instead of Car Scanner? | Future. 👍 to vote. | [obd/evscanner](obd/evscanner/) |
+| …use EVScanner instead of Car Scanner? | Future — [👍 vote](https://github.com/jduffie/ford-lightning/issues/1). | [obd/evscanner](obd/evscanner/) |
 | …do this on Android / Android Auto? | On request — open an issue. | [docs/roadmap.md](docs/roadmap.md) |
 
 Topics beyond OBD (charging, cost pipeline, …) are **TBD** — they appear here as

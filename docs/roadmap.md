@@ -1,7 +1,7 @@
 # Roadmap
 
-Interest-gauged. Each item below is a draft GitHub issue body. The owner opens the
-issues; readers **👍 to vote**. **Nothing here is built until it's voted.**
+Interest-gauged. Each item below is now an **open GitHub issue** — click through and
+**👍 react on the issue to vote.** **Nothing here is built until it's voted.**
 
 ---
 
@@ -21,7 +21,7 @@ Scope if voted:
 
 Depends on: the Car Scanner PID hex being verified first (shared source of truth).
 
-**👍 to vote.**
+**[👍 Vote — issue #1](https://github.com/jduffie/ford-lightning/issues/1)**
 
 ---
 
@@ -43,7 +43,7 @@ Scope if voted:
 
 Depends on: home-charging `rates/` being populated (currently scaffold).
 
-**👍 to vote.**
+**[👍 Vote — issue #2](https://github.com/jduffie/ford-lightning/issues/2)**
 
 ---
 
