@@ -25,7 +25,7 @@ Set the `$/kWh` once in Car Scanner (Settings → currency + energy price) so th
 does not own the number. Dependency direction is vehicle → home-charging, never the
 reverse.
 
-> home-charging ↗ `rates/` _(scaffold)_
+> [home-charging ↗ `rates/`](https://github.com/jduffie/home-charging/tree/main/rates) _(scaffold)_
 
 ## Layout / order
 

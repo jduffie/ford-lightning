@@ -15,8 +15,8 @@ question, follow the one link.
 | …watch performance (power, current, motor/inverter temps)? | Import the Performance dashboard. | [obd/carscanner → Performance](obd/carscanner/dashboards/performance/) |
 | …estimate what a trip cost in electricity? | Import the Expense dashboard (uses a `$/kWh` rate you set). | [obd/carscanner → Expense](obd/carscanner/dashboards/expense/) |
 | …get Car Scanner set up and these dashboards loaded? | Restore-from-backup install flow. | [obd/carscanner/install.md](obd/carscanner/install.md) |
-| …know the right `$/kWh` rate to use for cost? | That lives in home-charging (canonical rate). | home-charging ↗ `rates/` _(scaffold)_ |
-| …size or install a home charger for this truck? | Situational — copy the prompt into an LLM. | home-charging ↗ `prompts/charger-sizing.md` |
+| …know the right `$/kWh` rate to use for cost? | That lives in home-charging (canonical rate). | [home-charging ↗ `rates/`](https://github.com/jduffie/home-charging/tree/main/rates) |
+| …size or install a home charger for this truck? | Situational — copy the prompt into an LLM. | [home-charging ↗ charger-sizing prompt](https://github.com/jduffie/home-charging/blob/main/prompts/charger-sizing.md) |
 | …use EVScanner instead of Car Scanner? | Future. 👍 to vote. | [obd/evscanner](obd/evscanner/) |
 | …do this on Android / Android Auto? | On request — open an issue. | [docs/roadmap.md](docs/roadmap.md) |
 
