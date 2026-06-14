@@ -28,6 +28,6 @@ care which.
 
 `obd/carscanner` is built and **verified on-vehicle (2026-06-13)** on a 2025 Flash
 (123 kWh) with an OBDLink MX+ — full HVB / motor / 12V telemetry reads, so the 2025
-Flash is **not** OBD-firewalled. Most Battery/Performance PID hex is confirmed and
-cross-checked against live readings. A few rows (state of health, 12V SOC/voltage,
-motor/inverter temps) remain `TODO` — see each dashboard's table.
+Flash is **not** OBD-firewalled. All Battery/Performance PIDs are filled with hex
+from the Ford BEV PID sheet — most cross-checked against live readings, a few (LVB
+SOC, motor/inverter temps) sheet-sourced. See each dashboard's table.

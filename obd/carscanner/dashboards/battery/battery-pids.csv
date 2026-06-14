@@ -4,7 +4,7 @@ HVB Pack Voltage,Pack V,7E2,0x22480D,INT16(A:B)*0.01,0,500,V,verified-2026-06-13
 HVB Pack Current,Pack A,7E2,0x22480B,((signed(A)*256)+B)*0.02,-500,500,A,verified-2026-06-13,4.4
 HVB Power,Power,,,val{HVB Pack Voltage}*val{HVB Pack Current}*0.001,-200,200,kW,computed,2.2
 HVB Pack Temperature,Pack Temp,(default),0x224800,(A-50)*1.8+32,-50,400,F,verified-2026-06-13,93.2
-HVB State of Health,SOH,,,,0,100,%,TODO-not-in-mache-sheet,100*
+HVB State of Health,SOH,(default),0x22490C,A*0.5,-5,105,%,verified-2026-06-13,100
 HVB Energy to Empty,Energy,(default),0x224848,INT16(A:B)*0.002,0,131,kWh,verified-2026-06-13,76.08
-LVB State of Charge,LVB SOC,,,,0,100,%,TODO-not-in-mache-sheet,
-LVB Voltage,LVB V,,,,0,16,V,TODO-not-in-mache-sheet,
+LVB State of Charge,LVB SOC,(default),0x224028,A,0,100,%,sheet-2026-06-13,
+LVB Voltage,LVB V,(default),0x22402A,A*0.05+6,6,20,V,verified-2026-06-13,~13.3

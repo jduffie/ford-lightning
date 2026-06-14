@@ -18,14 +18,14 @@ High-voltage battery (HVB) state for the F-150 Lightning, plus the 12V (LVB).
 | HVB pack current | `7E2` | `0x22480B` | `((signed(A)*256)+B)*0.02` | A | 4.4 | ✅ verified |
 | HVB power | — | computed | `val{HVB pack voltage}*val{HVB pack current}*0.001` | kW | 2.2 | ✅ computed |
 | HVB pack temperature | (default) | `0x224800` | `(A-50)*1.8+32` | °F | 93.2 | ✅ verified |
-| HVB state of health | — | TODO | TODO | % | 100\* | ⚠️ TODO |
+| HVB state of health | (default) | `0x22490C` | `A*0.5` | % | 100 | ✅ verified |
 | HVB energy to empty | (default) | `0x224848` | `INT16(A:B)*0.002` | kWh | 76.08 | ✅ verified |
-| 12V (LVB) State of Charge | — | TODO | TODO | % | — | ⚠️ TODO |
-| 12V (LVB) voltage | — | TODO | TODO | V | — | ⚠️ TODO |
+| 12V (LVB) State of Charge | (default) | `0x224028` | `A` | % | — | 🟡 sheet |
+| 12V (LVB) voltage | (default) | `0x22402A` | `A*0.05+6` | V | ~13.3 | ✅ verified |
 
-\* SOH read **100%** live from Car Scanner's built-in profile, but its PID/formula
-isn't in the MachEforum Torque sheet we verified from — left TODO until the hex is
-captured (see Notes).
+Status: **✅ verified** = sheet hex + cross-checked against a live reading.
+**🟡 sheet** = sheet hex with plausible scale, but no live value was captured to
+cross-check (LVB SOC) — confirm opportunistically.
 
 ## Byte & function conventions
 
@@ -58,10 +58,9 @@ captured (see Notes).
   "HV Battery Power Flow Calculated" instead multiplies `HVB Voltage` by `HVB Current
   Low Range` (`0x22480A`) — equivalent; cross-checks to the native `HV EV Battery
   Power` reading (2.98 hp = 2.2 kW at 343 V × 6.5 A).
-- The three `TODO` rows (SOH, 12V SOC, 12V voltage) weren't in the Torque CSV we
-  pulled. Grab rows `HVB State of Health`, `LVB State of Charge`, `LVB Voltage` from:
-  - https://www.f150lightningforum.com/forum/threads/pid-list-to-monitor-your-lightning.13563/
-  - https://www.macheforum.com/site/threads/ford-mustang-mach-e-extended-pids-for-torque-project.7427/
+- All 9 tiles now carry hex from the compiled Ford BEV PID sheet (downloaded CSV).
+  SOH (`0x22490C`) and 12V voltage (`0x22402A`) cross-check against live readings;
+  LVB SOC (`0x224028`) is sheet-sourced (plausible scale, no live value captured).
 
 ## Screenshots
 

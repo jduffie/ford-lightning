@@ -4,8 +4,8 @@ Drivetrain power and thermals for the F-150 Lightning. 6 tiles — under the Car
 10-PID cap.
 
 > **Verified on-vehicle 2026-06-13** — power, current, voltage and SOC read live on
-> a 2025 Flash (OBDLink MX+ + Car Scanner). Motor/inverter temps weren't in the
-> MachEforum Torque CSV we pulled — see TODO below.
+> a 2025 Flash (OBDLink MX+ + Car Scanner). Motor/inverter temps are filled from the
+> compiled Ford BEV PID sheet (sheet-sourced; no live value captured to cross-check).
 
 ## PID definitions
 
@@ -14,8 +14,8 @@ Drivetrain power and thermals for the F-150 Lightning. 6 tiles — under the Car
 | Instantaneous power | — | computed | `val{HVB pack voltage}*val{HVB pack current}*0.001` (regen negative) | kW | 2.2 | ✅ computed |
 | HVB pack current | `7E2` | `0x22480B` | `((signed(A)*256)+B)*0.02` | A | 4.4 | ✅ verified |
 | HVB pack voltage | `7E2` | `0x22480D` | `INT16(A:B)*0.01` | V | 343 | ✅ verified |
-| Primary motor coil temperature | — | TODO | TODO | °F | — | ⚠️ TODO |
-| Primary motor inverter temperature | — | TODO | TODO | °F | — | ⚠️ TODO |
+| Primary motor coil temperature | (default) | `0x22481F` | `((signed(A)*256)+B)*1.8+32` | °F | — | 🟡 sheet |
+| Primary motor inverter temperature | (default) | `0x224824` | `((signed(A)*256)+B)*1.8+32` | °F | — | 🟡 sheet |
 | HVB State of Charge | (default) | `0x224801` | `INT16(A:B)*0.002` | % | 60.4 | ✅ verified |
 
 Byte/function conventions (`INT16`, `signed`, `val{}`, `(default)` header) are
@@ -46,11 +46,9 @@ it on a closed course / safe road.
 
 - **Instantaneous power** is computed from the voltage and current tiles; sign
   follows current, so regen reads negative.
-- Motor/inverter temps showed live in Car Scanner's built-in profile (rows
-  `Primary Motor Coil Temperature` / `Primary Motor Inverter Temperature`) but weren't
-  in the Torque CSV we verified. Pull their hex from:
-  - https://www.f150lightningforum.com/forum/threads/pid-list-to-monitor-your-lightning.13563/
-  - https://www.macheforum.com/site/threads/ford-mustang-mach-e-extended-pids-for-torque-project.7427/
+- Motor/inverter temps are filled from the compiled Ford BEV PID sheet
+  (`0x22481F` / `0x224824`) — **sheet-sourced**, no live value was captured to
+  cross-check, so confirm opportunistically. `🟡 sheet` in the table flags this.
 - The Lightning is dual-motor — `Primary` (front) and `Secondary` (rear) each have
   coil + inverter temps. Add the rear pair if you want all four (watch the 10-PID cap).
 

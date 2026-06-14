@@ -21,7 +21,6 @@ Setup and import flow: [install.md](install.md).
   request.**
 - Adapter: **OBDLink MX+ (Bluetooth Classic, BT 3.0 — not BLE).** See
   [install.md](install.md).
-- **Verified on-vehicle 2026-06-13** on a 2025 Flash: most Battery/Performance hex is
-  confirmed and cross-checked against live readings (not firewalled). A few rows
-  (state of health, 12V SOC/voltage, motor/inverter temps) are still `TODO` — see
-  each dashboard table.
+- **Verified on-vehicle 2026-06-13** on a 2025 Flash: all Battery/Performance PIDs
+  are now filled with hex from the Ford BEV PID sheet — most cross-checked against
+  live readings, a few (LVB SOC, motor/inverter temps) sheet-sourced. Not firewalled.

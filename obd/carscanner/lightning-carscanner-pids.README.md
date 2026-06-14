@@ -16,13 +16,18 @@ human-auditable record; this one is what you actually import.
 - HV Current — `0x22480b` (header `7e2`)
 - HVB Temperature — `0x224800`
 - HVB Energy to Empty — `0x224848`
+- HVB State of Health — `0x22490c`
+- LVB State of Charge (12V) — `0x224028`
+- LVB Voltage (12V) — `0x22402a`
+- Primary Motor Coil Temperature — `0x22481f`
+- Primary Motor Inverter Temperature — `0x224824`
 - HVB Power — computed (`HVB Voltage` × `HV Current`)
 
-## Still TODO (not in this file)
+## Verification
 
-State of health, 12V (LVB) SOC/voltage, motor/inverter temps — no verified hex
-yet. To fill them, run `/fill-pids` and paste the rows from the source threads.
-Never guess hex.
+All 12 PIDs carry hex from the compiled Ford BEV PID sheet. Most are cross-checked
+against live on-vehicle readings; LVB SOC and the two motor temps are sheet-sourced
+(plausible scale, no live value captured). None are guessed.
 
 ## Sources
 
