@@ -1,0 +1,98 @@
+Name,,Header,ModeAndPID,ShortName,Name,Equation,Min Value,Max Value,Units,,startDiagnostic,stopDiagnostic,Scale,
+LVB State of Charge,,#N/A,0x2299ab,ACCC,A/C Compressor Current,((signed(A)*256)+B)/327.67,-100,100,Amps,,,,1,
+HVB Current High Range,,#N/A,0x224806,CVN,Contactor Voltage Negative,((((A*256)+B)*(1/1)+0)/10),0,300,Volts,,,,1,0
+HV DC Charger Maximum Current,,#N/A,0x224805,CVP,Contactor Voltage Positive,((((A*256)+B)*(1/1)+0)/10),0,300,Volts,,,,1,0
+Secondary Motor Coil Temperature,,#N/A,0x2248df,HvbCHOp,Coolant Heater Op Mode,LOOKUP(A:A:0='Off':1='On':2='Dgrd':3='Shut':4='Shrt':5='NRes':6='?':7='Stop'),0,7,,,,,1,
+Secondary Motor Inverter Temperature,,#N/A,0x2248de,HvbCHP,Coolant Heater Power,INT16(A:B)Ã—.001,0,2000,kW,,,,1,
+Primary Motor Inverter Voltage,,#N/A,0x22f41f,RunTmE,Engine Run Time,(((A*256)+B)/60,0,1000,Minutes,,,,1,
+HVB Current,,7E2,0x224851,EvseC,EVSE Charging,(A==6)||(A==8),0,1,State,,,,1,
+LVB Age,,7E2,0x2248b7,EvseD,EVSE Digital Mode,LOOKUP(A:A:0='None':1='DCE-':2='DC-P':3='DCEP':4='ACE-':5='AC-P':6='ACEP':7='Rst':8='Off':9='Est':10='FAIL'),0,10,State,,,,1,
+HV AC Charger Coupler Temperature,,7E2,0x224851,EvseT,EVSE Type,LOOKUP(A:A:0='None':1='Lvl1':2='Lvl2':3='DC':4='Bas':5='HL':6='BasAC':7='HLAC':8='HLDC':10='NCom':11='FAULT':12='HEnd'),0,12,State,,,,1,
+HV DC Charger Coupler Temperature 1,,#N/A,0x221e12,GCM,Gear Commanded,LOOKUP(A:A:255='Fault':70='P':60='R':50='N':40='D':20='L':0='?'),0,255,State,,,,1,
+HV DC Charger Coupler Temperature 3,,#N/A,0x220580,GrillSP,Grill Shutter Position,A/2.55,0,100,%,,,,1,
+HVB State of Health,,7E2,0x224888,ChgACT,HV AC Charger Coupler Temperature,(A-40)*1.8+32,-40,400,F,,,,1,
+Grill Shutter Position,,7E2,0x22485f,ACInA,HV AC Charger Input Current,A,0,100,Amps,,,,1,
+HV Charger Output Reduction Temperature,,7E2,0x224860,ACInF,HV AC Charger Input Frequency,A*0.5,30,90,Hz,,,,1,
+HV Charger Pilot Duty Cycle,,7E2,0x22485e,ACInV,HV AC Charger Input Voltage,INT16(A:B)*0.01,0,300,Volts,,,,1,
+HV Current,,#N/A,0x2248fb,ChPLim,HV Charge Power Limit,INT16(A:B)*0.1,0,300,kW,,,,1,
+HVB Temperature Range Average,,7E2,0x22484e,ChgPAv,HV Charger Input Power Available,INT16(A:B)*0.005,0,600,kW,,,,1,
+Throttle Position (Desired),,7E2,0x2248c4,ChgMaxP,HV Charger Maximum Power,INT16(A:B)*0.05,0,500,kW,,,,1,
+Outside Temperature,,#N/A,0x224850,ChgOA,HV Charger Output Current Measured,INT16(A:B)*0.01,0,600,Amps,,,,1,
+Transmission Temp,,7E2,0x2248A5,ChgORT,HV Charger Output Reduction Temperature,A,0,100,%,,,,1,
+HVB Temperature Range,,7E2,0x22484a,ChgOV,HV Charger Output Voltage,INT16(A:B)*0.01,0,600,Volts,,,,1,
+Main ECU Voltage Supply,,7E2,0x224861,PilotDC,HV Charger Pilot Duty Cycle,A*0.5,0,100,%,,,,1,
+HV DC Charger Maximum Voltage,,7E2,0x2248b6,PilotV,HV Charger Pilot Voltage,A*0.1,0,15,Volts,,,,1,
+HVB Temperature Range Maximum,,#N/A,,ChgPwr,HV Charger Power Flow Calculated,val{HV Charger Output Current Measured}*val{HV Charger Output Voltage}*0.001,-200,200,kW,,,,1,
+HVB Average Module Voltage,,7E2,0x224862,ProxSt,HV Charger Proximity Status,LOOKUP(A:A:0='Off':1='OnS3':2='On':3='10A'':4='13A'':5='16A':'6='20A'':7='FAULT'':8='32A'':9='63A':16='DC'':17='Open'':18='Short':19='Short':20='RANGE':21='Open'),0,18,,,,,1,
+HVB Charge Voltage Requested,,7E2,0x2248a0,ProxV,HV Charger Proximity Voltage,A*0.02,0,15,Volts,,,,1,
+HVB Temperature Range Minimum,,7E2,0x22484f,ChgSt,HV Charger Status,LOOKUP(A:A:0='NRdy':1='Rdy':2='FAULT':3='WChk':4='PreC':5='Chrg':6='Done':7='ExtC':8='Init'),0,8,,,,,1,
+HVB State of Charge Displayed,,#N/A,0x22480b,AMP,HV Current,((((Signed(A)*256)+B)*(1/5)+0)/10),-300,300,Amps,,,,1,0
+Target / Desired SoC,,7E2,0x224897,ChgDCT1,HV DC Charger Coupler Temperature 1,(A-40)*1.8+32,-40,400,F,,,,1,
+Throttle Position (Actual),,7E2,0x2248a4,ChgDCT3,HV DC Charger Coupler Temperature 3,(A-40)*1.8+32,-40,400,F,,,,1,
+LVB Current,,#N/A,0x224899,DCChgMA,HV DC Charger Maximum Current,INT16(A:B)*0.01,0,600,Amps,,,,1,
+LVB DCDC HV Current,,#N/A,0x22489d,DCChgMV,HV DC Charger Maximum Voltage,INT16(A:B)*0.1,0,1000,Volts,,,,1,
+LVB DCDC LV Current,,7E2,0x22489e,DCChgSt,HV DC Charger Status,LOOKUP(A:A:0='NRdy':1='Init':2='Rdy':3='WChk':4='PreC':5='Chg':6='Done':8='Wait':9='NCap':10='FAULT':11='CChk'),0,18,,,,,1,
+Right Front Tire Pressure,,#N/A,0x224804,HvNLV,HV Negative Leakage Voltage,INT16(A:B)*0.001,0,100,Volts,,,,1,0
+Right Rear Tire Pressure,,#N/A,0x224803,HvPLV,HV Positive Leakage Voltage,INT16(A:B)*0.001,0,100,Volts,,,,1,0
+HVB Energy to Empty,,#N/A,0x22483f,HvbModV,HVB  Modules Voltage,((((A*256)+B)*(1/10)+0)/100),0,100,Volts,,,,1,0
+HVB Coolant Inlet Temperature,,#N/A,0x224810,HvbAge,HVB Age,INT16(A:B)*0.005,0,320,months,,,,1,
+Primary Motor Coil Temperature,,#N/A,0x224841,HvbAvgModV,HVB Average Module Voltage,INT16(A:B)*0.001,0,50,Volts,,,,1,0
+Primary Motor Inverter Temperature,,#N/A,0x224842,HvbCCR,HVB Charge Current Requested,INT16(A:B)*0.01,0,600,Amps,,,,1,
+HV Charger Maximum Power,,#N/A,0x224844,HvbCVR,HVB Charge Voltage Requested,A*2,0,500,Volts,,,,1,
+HV Charger Input Power Available,,#N/A,0x22484d,HvbCSt,HVB Charging Status,LOOKUP(A:A:0='NRdy':1='Wait':2='Rdy':3='Chg':4='Done':5='FAULT'),0,5,,,,,1,
+Maximum Discharge Power Limit,,#N/A,0x224846,HvbCIT,HVB Coolant Inlet Temperature,(A-50)*1.8+32,-50,400,F,,,,1,
+Interior Temperature,,#N/A,0x2248f9,HvbA,HVB Current,((signed(A)*256)+B)*0.1,-600,600,Amps,,,,1,
+HV AC Charger Input Frequency,,#N/A,0x224809,HvbCHR,HVB Current High Range,((((A*256)+B)*(1/1)+0)/100),0,300,Amps,,,,1,0
+HVB Charge Current Requested,,#N/A,0x224848,Energy,HVB Energy to Empty,INT16(A:B)*0.002,0,100,kWh,,,,1,
+HV Charge Power Limit,,7E2,0x2248bc,HvbMaxCC,HVB Maximum Charge Current,INT16(A:B)*0.05,0,15,Amps,,,,1,
+HV Charger Power Flow Calculated,,#N/A,0x224840,HvbMinModV,HVB Minimum Module Voltage,INT16(A:B)*0.001,0,100,Volts,,,,1,0
+Instant mile/kW,,#N/A,,HvbPwr,HVB Power Flow Calculated,val{HVB Current}*val{HVB Voltage}*0.001,-200,200,kW,,,,1,
+Engine Run Time,,#N/A,0x224801,HvbSoc,HVB State of Charge,INT16(A:B)*0.002,-5,105,%,,,,1,
+HVB Age,,#N/A,0x224845,HvbSocD,HVB State of Charge Displayed,A*0.5,-5,105,%,,,,1,
+Vehicle Speed High Resolution,,#N/A,0x22490c,HvbSoh,HVB State of Health,A*0.5,-5,105,%,,,,1,
+Primary Motor Torque,,#N/A,0x224800,HvbT,HVB Temperature,(A-50)*1.8+32,-50,220,F,,,,1,
+Left Front Tire Pressure,,#N/A,0x224808,HvbTR,HVB Temperature Range,(C-50)*1.8+32,-50,300,°F,,,,1,0
+HVB Temperature,,#N/A,0x224808,HvbAve,HVB Temperature Range Average,(D-50)*1.8+32,-50,300,°F,,,,1,0
+Coolant Heater Power,,#N/A,0x224808,HvbMaxT,HVB Temperature Range Maximum,(A-50)*1.8+32,-50,300,°F,,,,1,0
+HVB Power Flow Calculated,,#N/A,0x224808,HvbMinT,HVB Temperature Range Minimum,(B-50)*1.8+32,-50,300,°F,,,,1,0
+Secondary Motor Torque,,#N/A,0x2248e0,HvbTOp,HVB Thermal Op Mode,LOOKUP(A:A:0='Off':1='Eq':2='CFlow':3='CFan':4='CMod':5='CMax':15='Heat'),0,15,,,,,1,
+Left Rear Tire Pressure,,#N/A,0x22480d,HvbV,HVB Voltage,INT16(A:B)*0.01,0,500,Volts,,,,1,
+Primary Motor Speed,,#N/A,,InMikW,Instant mile/kW,1/val{InWhMi},-40,40,mi/kW,,,,,
+EVSE Charging,,#N/A,,InWhMi,Instant Wh/mile,val{HvbPwr}/val{VSSHR}*1000,-600,600,Wh/mi,,,,1,0
+Secondary Motor Speed,,7E2,0x22dd04,IntT,Interior Temperature,(A-40)*1.8+32,-40,400,F,,,,1,
+EVSE Digital Mode,,#N/A,0x222813,LF TP,Left Front Tire Pressure,(((256*A)+B)/3+22/3)*0.145,0,70,PSI,,,,1,0
+EVSE Type,,#N/A,0x222815,LR TP,Left Rear Tire Pressure,(((256*A)+B)/3+22/3)*0.145,0,70,PSI,,,,1,0
+Contactor Voltage Negative,,#N/A,0x224027,LvbAge,LVB Age,INT16(A:B),0,65535,Days,,,,1,
+Gear Commanded,,#N/A,0x22402b,LvbA,LVB Current,A-127,-127,128,Amps,,,,1,
+A/C Compressor Current,,#N/A,0x22483d,DCEn,LVB DCDC Enable,BIT(A:0),0,1,,,,,1,
+HV AC Charger Input Current,,#N/A,0x22483a,DCHVA,LVB DCDC HV Current,A*0.1,0,25,Amps,,,,1,
+HVB Maximum Charge Current,,#N/A,0x224836,DCLVA,LVB DCDC LV Current,,0,255,Amps,,,,1,
+Contactor Voltage Positive,,#N/A,0x224028,LvbV,LVB State of Charge,A,0,100,%,,,,1,
+Coolant Heater Op Mode,,#N/A,0x22402a,,LVB Voltage,A*0.05+6,6,20,Volts,,,,1,
+HV Charger Output Current Measured,,#N/A,0x22dd02,ECU,Main ECU Voltage Supply,((A*(1/1)+0)/10),0,100,Volts,,,,1,0
+HVB  Modules Voltage,,#N/A,0x224815,MxD,Maximum Discharge Power Limit,((A*(25/1)+0)/100),0,300,kW,,,,1,0
+HVB State of Charge,,#N/A,0x22dd05,AIR,Outside Temperature,((A*(9/5)-40)),0,100,°F,,,,1,0
+LVB Voltage,,#N/A,0x22481f,PriMoCT,Primary Motor Coil Temperature,((signed(A)*256)+B)*1.8+32,-40,300,F,,,,1,
+HV AC Charger Input Voltage,,#N/A,0x224824,PriMoIT,Primary Motor Inverter Temperature,((signed(A)*256)+B)*1.8+32,-40,300,F,,,,1,
+HV Charger Proximity Voltage,,#N/A,0x22481d,PriMoV,Primary Motor Inverter Voltage,((signed(A)*256)+B)*0.1,-400,400,Volts,,,,1,
+HV Charger Output Voltage,,#N/A,0x221e2c,PriMoR,Primary Motor Speed,(signed(A)*256)+B,-6000,12000,RPM,,,,1,
+HV Charger Pilot Voltage,,#N/A,0x22481c,PriMoTq,Primary Motor Torque,((signed(A)*256)+B)*0.1,-200,200,Nm,,,,1,
+HVB Minimum Module Voltage,,#N/A,0x222814,RF TP,Right Front Tire Pressure,(((256*A)+B)/3+22/3)*0.145,0,70,PSI,,,,1,0
+HVB Voltage,,#N/A,0x222816,RR TP,Right Rear Tire Pressure,(((256*A)+B)/3+22/3)*0.145,0,70,PSI,,,,1,0
+Secondary Motor Inverter Voltage,,#N/A,0x224820,SecMoCT,Secondary Motor Coil Temperature,((signed(A)*256)+B)*1.8+32,-40,300,F,,,,1,
+HV Negative Leakage Voltage,,#N/A,0x22481e,SecMoIT,Secondary Motor Inverter Temperature,((signed(A)*256)+B)*1.8+32,-40,300,F,,,,1,
+LVB DCDC Enable,,#N/A,0x224823,SecMoV,Secondary Motor Inverter Voltage,((signed(A)*256)+B)*0.1,-400,400,Volts,,,,1,
+HV Positive Leakage Voltage,,#N/A,0x224821,SecMoR,Secondary Motor Speed,((signed(A)*256)+B),-6000,12000,RPM,,,,1,
+Instant Wh/mile,,#N/A,0x22481a,SecMoTq,Secondary Motor Torque,((signed(A)*256)+B)*0.1,-200,200,Nm,,,,1,
+,,#N/A,0x2205A1,TDSoCBat,Target / Desired SoC,INT(A),0,100,%,,,,1,
+HV Charger Proximity Status,,#N/A,0x22093c,TP A,Throttle Position (Actual),((A*256)+B)*(100/8192),0,100,°,,,,1,0
+HV Charger Status,,#N/A,0x22091a,TP D,Throttle Position (Desired),((A*256)+B)*(100/8192),0,100,°,,,,1,0
+HV DC Charger Status,,#N/A,0x221e1c,TransTmp,Transmission Temp,(((signed(A)*256)+B)*(9/8)+320)/10,0,200,°F,,,,1,0
+HVB Charging Status,,#N/A,0x221505,VSSHR,Vehicle Speed High Resolution,INT16(A:B)/128*0.621371,0,12000,MPH,,,,1,0
+HVB Thermal Op Mode,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,1016.6,,,,,,,,
